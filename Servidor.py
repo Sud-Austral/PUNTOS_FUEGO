@@ -44,7 +44,7 @@ def Update(ref = pd.read_excel("https://github.com/Sud-Austral/PUNTOS_FUEGO/raw/
     #ref = pd.read_excel("D:\github\PUNTOS_FUEGO\Data\ConsolidadoPuntosFuego.xlsx")
     
     regiones = ["01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16"]
-    FI = datetime.datetime.strptime(ref["Fecha"].max(), '%Y-%m-%d') #+  timedelta(days=1)
+    FI = datetime.datetime.strptime(ref["Fecha_Texto"].max(), '%Y-%m-%d') #+  timedelta(days=1)
     salida = []
     flag = True
     while FI < datetime.datetime.now() +  timedelta(days=1) and flag:
@@ -75,13 +75,13 @@ def SaveConsolidado():
     ref = pd.read_excel("https://github.com/Sud-Austral/PUNTOS_FUEGO/raw/main/Data/ConsolidadoPuntosFuego.xlsx")
     dfUpdate = Update(ref)
     df = pd.concat([ref,dfUpdate])
-    df.to_excel("Data/ConsolidadoPuntosFuego.xlsx")
+    df.to_excel("Data/ConsolidadoPuntosFuego.xlsx", index=False)
     return False
 
 def guardarRepositorio():
   #Esta linea crea un objeto para manejar el repositorio alojado en la ruta
   #Correspondinete al argumento entregado en String
-  repoLocal = git.Repo('C:/Users/datos/Documents/GitHub/Datos_Panama')  
+  repoLocal = git.Repo(r'C:\Users\datos\Documents\GitHub\PUNTOS_FUEGO')  
   try:
       #Agrego todos los archivos nuevos
       repoLocal.git.add(".")
