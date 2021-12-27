@@ -47,7 +47,8 @@ def Update(ref = pd.read_excel("https://github.com/Sud-Austral/PUNTOS_FUEGO/raw/
     FI = datetime.datetime.strptime(ref["Fecha_Texto"].max(), '%Y-%m-%d') #+  timedelta(days=1)
     salida = []
     flag = True
-    while FI < datetime.datetime.now() +  timedelta(days=1) and flag:
+    #while FI < datetime.datetime.now() +  timedelta(days=1) and flag:
+    while FI < datetime.datetime.now() and flag:
         print(datetime.datetime.now().strftime('%H:%M:%S'))
         FF = FI +  timedelta(days=1)
         FI_text = FI.strftime('%Y-%m-%d')
