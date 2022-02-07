@@ -102,10 +102,10 @@ def proceso():
 
 def saveConsolidado():
     data = pd.read_excel(r"Data/ConsolidadoPuntosFuego.xlsx")
+    
 
-
-    df           = pd.read_csv(fuentes[0])
-    df["Fuente"] = fuentes[1]
+    df           = pd.read_csv(fuentes[0][0])
+    df["Fuente"] = fuentes[0][1]
     consolidadoUpdate = df[df["acq_date"].apply(lambda x: x not in data["Fecha_Texto"].unique())]
     #consolidadoUpdate = consolidadoUpdate.reset_index()
     dfDate = consolidadoUpdate
