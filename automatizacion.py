@@ -101,7 +101,7 @@ def proceso():
     return
 
 def saveConsolidado():
-    data = pd.read_excel(r"Data\ConsolidadoPuntosFuego.xlsx")
+    data = pd.read_excel(r"Data/ConsolidadoPuntosFuego.xlsx")
 
 
     df           = pd.read_csv(fuentes[0])
