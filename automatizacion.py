@@ -113,6 +113,9 @@ def saveConsolidado():
     dfLat = dfDate[dfDate["latitude"] < -16.5]
     dfLat2 = dfLat[dfLat["longitude"] < -69.5]
     dfLat2 = dfLat2.reset_index()
+    dfLat2 = getComunas(dfLat2)
+    dfSalida = dfLat2[["acq_date","REGION"]]
+    dfSalida = dfSalida.groupby(["acq_date","REGION"]).size().reset_index(name='counts')
     #try:
     #    dfLat2 = getComunas(dfLat2)
     #except:
@@ -122,7 +125,7 @@ def saveConsolidado():
     #dfFinal = pd.concat([consolidado,dfLat2])
     #dfFinal = dfFinal.reset_index()
     #dfFinal2 = dfFinal.drop(columns=["level_0","index","Unnamed: 0"])
-    dfLat2.to_excel("Test.xlsx", index=False)
+    dfSalida.to_excel("Test2.xlsx", index=False)
     print("ya deberia estar")
     #print(dfFinal)
     return 
