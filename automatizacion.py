@@ -107,7 +107,7 @@ def saveConsolidado():
     df           = pd.read_csv(fuentes[0][0])
     df["Fuente"] = fuentes[0][1]
     consolidadoUpdate = df[df["acq_date"].apply(lambda x: x not in data["Fecha_Texto"].unique())]
-    consolidadoUpdate = consolidadoUpdate[consolidadoUpdate["acq_date"].apply(lambda x: x == consolidadoUpdate["acq_date"].max())]
+    consolidadoUpdate = consolidadoUpdate[consolidadoUpdate["acq_date"].apply(lambda x: x != consolidadoUpdate["acq_date"].max())]
     #consolidadoUpdate = consolidadoUpdate.reset_index()
     dfDate = consolidadoUpdate
     dfLat = dfDate[dfDate["latitude"] < -16.5]
@@ -116,6 +116,7 @@ def saveConsolidado():
     dfLat2 = getComunas(dfLat2)
     dfSalida = dfLat2[["acq_date","REGION"]]
     dfSalida = dfSalida.groupby(["acq_date","REGION"]).size().reset_index(name='counts')
+    dfSalida = pd.concat([data,dfSalida])
     #try:
     #    dfLat2 = getComunas(dfLat2)
     #except:
