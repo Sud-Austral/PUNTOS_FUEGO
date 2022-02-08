@@ -116,6 +116,9 @@ def saveConsolidado():
     dfLat2 = getComunas(dfLat2)
     dfSalida = dfLat2[["acq_date","REGION"]]
     dfSalida = dfSalida.groupby(["acq_date","REGION"]).size().reset_index(name='counts')
+    
+    dfSalida.columns = ["Fecha","Región","Cantidad de Puntos"]
+    dfSalida["Fecha_Texto"] = dfSalida["Fecha"]
     dfSalida = pd.concat([data,dfSalida])
     #try:
     #    dfLat2 = getComunas(dfLat2)
