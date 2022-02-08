@@ -119,6 +119,7 @@ def saveConsolidado():
     
     dfSalida.columns = ["Fecha","Región","Cantidad de Puntos"]
     dfSalida["Fecha_Texto"] = dfSalida["Fecha"]
+    dfSalida["Fecha"] = dfSalida["Fecha"].apply(lambda x: datetime.datetime.strptime(x, '%Y-%m-%d'))
     dfSalida = pd.concat([data,dfSalida])
     #try:
     #    dfLat2 = getComunas(dfLat2)
