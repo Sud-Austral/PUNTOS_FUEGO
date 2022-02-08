@@ -107,6 +107,7 @@ def saveConsolidado():
     df           = pd.read_csv(fuentes[0][0])
     df["Fuente"] = fuentes[0][1]
     consolidadoUpdate = df[df["acq_date"].apply(lambda x: x not in data["Fecha_Texto"].unique())]
+    consolidadoUpdate = consolidadoUpdate[consolidadoUpdate["acq_date"].apply(lambda x: x == consolidadoUpdate["acq_date"].max())]
     #consolidadoUpdate = consolidadoUpdate.reset_index()
     dfDate = consolidadoUpdate
     dfLat = dfDate[dfDate["latitude"] < -16.5]
